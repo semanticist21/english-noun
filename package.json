@@ -1,0 +1,50 @@
+{
+  "name": "english-noun",
+  "version": "0.1.0",
+  "description": "English nouns selected from WordNet-style lemmas by usage frequency, with optional plural, possessive, article, and case transforms.",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./top50": {
+      "types": "./dist/top50.d.mts",
+      "default": "./dist/top50.mjs"
+    },
+    "./top25": {
+      "types": "./dist/top25.d.mts",
+      "default": "./dist/top25.mjs"
+    },
+    "./top10": {
+      "types": "./dist/top10.d.mts",
+      "default": "./dist/top10.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "prepack": "bun run build",
+    "extract": "bun scripts/extract-wordnet.ts",
+    "count": "bun scripts/count-wiki.ts",
+    "build:irregular": "bun scripts/build-irregular.ts",
+    "build:data": "bun scripts/build-data.ts",
+    "test": "bun test",
+    "e2e": "bun e2e/run.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "1.4.2",
+    "popular-english-words": "^1.0.2",
+    "tsdown": "0.23.0",
+    "typescript": "7.0.2",
+    "wordnet-db": "^3.1.14"
+  },
+  "license": "MIT"
+}
